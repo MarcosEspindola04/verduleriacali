@@ -15,6 +15,7 @@ public class PanelVentas extends javax.swing.JFrame {
      */
     public PanelVentas() {
         initComponents();
+        setTitle("Programa ventas LoDeCali");
     }
 
     /**

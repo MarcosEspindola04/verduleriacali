@@ -15,6 +15,7 @@ public class PanelProductos extends javax.swing.JFrame {
      */
     public PanelProductos() {
         initComponents();
+        setTitle("Programa ventas LoDeCali");
     }
 
     /**
