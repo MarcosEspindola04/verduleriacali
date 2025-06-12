@@ -4,14 +4,9 @@
  */
 package persistencia;
 
-/**
- *
- * @author marco
- */
 import Modelo.Producto;
 import java.sql.*;
 import java.util.*;
-
 
 public class ControladoraProducto {
 
@@ -29,7 +24,7 @@ public class ControladoraProducto {
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 Producto p = new Producto(
-                    rs.getInt("id"),
+                    rs.getInt("Codigo"),
                     rs.getString("nombre"),
                     rs.getString("rubro"),
                     rs.getString("unidad"),
@@ -46,24 +41,25 @@ public class ControladoraProducto {
 
     public void guardarProducto(Producto p) {
         try (Connection con = conectar()) {
-            String sql = "INSERT INTO producto (nombre, rubro, unidad, precio_venta, stock) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO producto (codigo, nombre, rubro, unidad, precio_venta, stock) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, p.getNombre());
-            ps.setString(2, p.getRubro());
-            ps.setString(3, p.getUnidad());
-            ps.setDouble(4, p.getPrecio());
-            ps.setDouble(5, p.getStock());
+            ps.setInt(1, p.getCodigo());
+            ps.setString(2, p.getNombre());
+            ps.setString(3, p.getRubro());
+            ps.setString(4, p.getUnidad());
+            ps.setDouble(5, p.getPrecio());
+            ps.setDouble(6, p.getStock());
             ps.executeUpdate();
         } catch (Exception e) {
             System.out.println("Error al guardar producto: " + e.getMessage());
         }
     }
 
-    public void eliminarProducto(int id) {
+    public void eliminarProducto(String codigo) {
         try (Connection con = conectar()) {
-            String sql = "DELETE FROM producto WHERE id = ?";
+            String sql = "DELETE FROM producto WHERE codigo = ?";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, id);
+            ps.setString(1, codigo);
             ps.executeUpdate();
         } catch (Exception e) {
             System.out.println("Error al eliminar producto: " + e.getMessage());
@@ -72,17 +68,40 @@ public class ControladoraProducto {
 
     public void editarProducto(Producto p) {
         try (Connection con = conectar()) {
-            String sql = "UPDATE producto SET nombre=?, rubro=?, unidad=?, precio_venta=?, stock=? WHERE id=?";
+            String sql = "UPDATE producto SET nombre=?, rubro=?, unidad=?, precio_venta=?, stock=? WHERE codigo=?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, p.getNombre());
             ps.setString(2, p.getRubro());
             ps.setString(3, p.getUnidad());
             ps.setDouble(4, p.getPrecio());
             ps.setDouble(5, p.getStock());
-            ps.setInt(6, p.getId());
+            ps.setInt(6, p.getCodigo());
             ps.executeUpdate();
         } catch (Exception e) {
             System.out.println("Error al editar producto: " + e.getMessage());
         }
+    }
+
+    public Producto buscarProductoPorCodigo(int codigo) {
+        Producto producto = null;
+        try (Connection con = conectar()) {
+            String sql = "SELECT * FROM producto WHERE codigo = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, codigo);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                producto = new Producto(
+                    rs.getInt("codigo"),
+                    rs.getString("nombre"),
+                    rs.getString("rubro"),
+                    rs.getString("unidad"),
+                    rs.getDouble("precio_venta"),
+                    rs.getDouble("stock")
+                );
+            }
+        } catch (Exception e) {
+            System.out.println("Error al buscar producto por código: " + e.getMessage());
+        }
+        return producto;
     }
 }
