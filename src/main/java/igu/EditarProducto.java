@@ -31,7 +31,7 @@ public class EditarProducto extends javax.swing.JFrame {
             txtCodigo.setText(String.valueOf(productoActual.getCodigo()));
             txtProducto.setText(productoActual.getNombre());
             txtPrecio.setText(String.valueOf(productoActual.getPrecio()));
-            txtStock.setText(String.valueOf(productoActual.getStock()));
+            txtCatidad.setText(String.valueOf(productoActual.getCantidad()));
             txtCodigo.setEditable(false); // No se debe cambiar el código
         }
     }
@@ -55,7 +55,7 @@ public class EditarProducto extends javax.swing.JFrame {
         txtPrecio = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txtStock = new javax.swing.JTextField();
+        txtCatidad = new javax.swing.JTextField();
         btnEditar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         cbUnidadoKg = new javax.swing.JComboBox<>();
@@ -73,7 +73,7 @@ public class EditarProducto extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setText("$");
 
-        jLabel6.setText("Stock:");
+        jLabel6.setText("Cantidad:");
 
         btnEditar.setText("editar");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
@@ -116,7 +116,7 @@ public class EditarProducto extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(txtCodigo)
                         .addComponent(txtProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE))
-                    .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCatidad, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbUnidadoKg, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(80, Short.MAX_VALUE))
@@ -140,7 +140,7 @@ public class EditarProducto extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCatidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cbUnidadoKg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
@@ -208,7 +208,7 @@ public class EditarProducto extends javax.swing.JFrame {
         try {
             productoActual.setNombre(txtProducto.getText());
             productoActual.setPrecio(Double.parseDouble(txtPrecio.getText()));
-            productoActual.setStock(Double.parseDouble(txtStock.getText()));
+            productoActual.setCantidad(Double.parseDouble(txtCatidad.getText()));
 
             ControladoraProducto control = new ControladoraProducto();
             control.editarProducto(productoActual);
@@ -260,9 +260,9 @@ public class EditarProducto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JTextField txtCatidad;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtPrecio;
     private javax.swing.JTextField txtProducto;
-    private javax.swing.JTextField txtStock;
     // End of variables declaration//GEN-END:variables
 }

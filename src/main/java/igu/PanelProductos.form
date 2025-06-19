@@ -111,7 +111,6 @@
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="jLabel5" min="-2" pref="10" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="jLabel6" alignment="0" min="-2" pref="43" max="-2" attributes="0"/>
                                   <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                                       <Component id="jLabel7" min="-2" pref="42" max="-2" attributes="0"/>
                                       <Component id="jLabel2" min="-2" pref="51" max="-2" attributes="0"/>
@@ -122,13 +121,17 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel8" min="-2" pref="77" max="-2" attributes="0"/>
                           </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel6" min="-2" pref="76" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="txtCodigo" max="32767" attributes="0"/>
                               <Component id="txtProducto" max="32767" attributes="0"/>
-                              <Component id="txtStock" alignment="0" pref="159" max="32767" attributes="0"/>
+                              <Component id="txtCantidad" alignment="0" pref="159" max="32767" attributes="0"/>
                               <Component id="txtPrecio" alignment="0" max="32767" attributes="0"/>
                               <Component id="cbRubro" alignment="0" pref="159" max="32767" attributes="0"/>
                           </Group>
@@ -164,7 +167,7 @@
                       <EmptySpace type="separate" pref="28" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtStock" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtCantidad" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -208,10 +211,10 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel6">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Stock:"/>
+                <Property name="text" type="java.lang.String" value="Stock / Peso:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtStock">
+            <Component class="javax.swing.JTextField" name="txtCantidad">
             </Component>
             <Component class="javax.swing.JComboBox" name="cbRubro">
               <Properties>
@@ -250,7 +253,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel8">
               <Properties>
-                <Property name="text" type="java.lang.String" value="unidad o kg"/>
+                <Property name="text" type="java.lang.String" value="Unidad / Kg"/>
               </Properties>
             </Component>
           </SubComponents>

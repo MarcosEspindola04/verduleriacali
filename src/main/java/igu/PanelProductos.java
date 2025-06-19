@@ -21,7 +21,7 @@ public class PanelProductos extends javax.swing.JFrame {
    private void cargarProductosEnTabla() {
        
     DefaultTableModel modelo = new DefaultTableModel();
-    modelo.setColumnIdentifiers(new String[]{"Código", "Nombre", "Rubro", "Unidad", "Precio", "Stock"});
+   modelo.setColumnIdentifiers(new String[]{"Código", "Nombre", "Rubro", "Venta por", "Precio", "Cantidad"});
     
     
     
@@ -37,7 +37,7 @@ public class PanelProductos extends javax.swing.JFrame {
             p.getRubro(),
             p.getUnidad(),
             formatoMiles(p.getPrecio()),
-            p.getStock()
+            p.getCantidad() + " " + p.getUnidad()
         });
     }
 
@@ -64,11 +64,18 @@ public class PanelProductos extends javax.swing.JFrame {
             int codigo = Integer.parseInt(txtCodigo.getText()); // <-- línea nueva
             String nombre = txtProducto.getText();
             String rubro = cbRubro.getSelectedItem().toString();
-            String unidad = cbUnidadoKg.getSelectedItem().toString(); 
             double precio = Double.parseDouble(txtPrecio.getText());
-            double stock = Double.parseDouble(txtStock.getText());
+            
+            String unidad = cbUnidadoKg.getSelectedItem().toString(); 
+            double cantidad;
 
-            Producto nuevo = new Producto(codigo, nombre, rubro, unidad, precio, stock);
+            if (unidad.equals("Unidad")) {
+                cantidad = Integer.parseInt(txtCantidad.getText()); // validás que sea entero
+            } else {
+                cantidad = Double.parseDouble(txtCantidad.getText()); // puede tener decimales
+            }
+
+            Producto nuevo = new Producto(codigo, nombre, rubro, unidad, precio, cantidad);
             ControladoraProducto control = new ControladoraProducto();
             control.guardarProducto(nuevo);
 
@@ -78,7 +85,7 @@ public class PanelProductos extends javax.swing.JFrame {
             txtCodigo.setText("");
             txtProducto.setText("");
             txtPrecio.setText("");
-            txtStock.setText("");
+            txtCantidad.setText("");
             cbRubro.setSelectedIndex(0);
 
         } catch (Exception e) {
@@ -110,7 +117,7 @@ public class PanelProductos extends javax.swing.JFrame {
         txtPrecio = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txtStock = new javax.swing.JTextField();
+        txtCantidad = new javax.swing.JTextField();
         cbRubro = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         cbUnidadoKg = new javax.swing.JComboBox<>();
@@ -135,7 +142,7 @@ public class PanelProductos extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setText("$");
 
-        jLabel6.setText("Stock:");
+        jLabel6.setText("Stock / Peso:");
 
         cbRubro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -143,7 +150,7 @@ public class PanelProductos extends javax.swing.JFrame {
 
         cbUnidadoKg.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel8.setText("unidad o kg");
+        jLabel8.setText("Unidad / Kg");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -159,19 +166,21 @@ public class PanelProductos extends javax.swing.JFrame {
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(txtCodigo)
                         .addComponent(txtProducto)
-                        .addComponent(txtStock, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+                        .addComponent(txtCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
                         .addComponent(txtPrecio)
                         .addComponent(cbRubro, 0, 159, Short.MAX_VALUE))
                     .addComponent(cbUnidadoKg, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -199,7 +208,7 @@ public class PanelProductos extends javax.swing.JFrame {
                 .addGap(18, 28, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbUnidadoKg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -375,9 +384,9 @@ public class PanelProductos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaProductos;
+    private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtPrecio;
     private javax.swing.JTextField txtProducto;
-    private javax.swing.JTextField txtStock;
     // End of variables declaration//GEN-END:variables
 }

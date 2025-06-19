@@ -115,7 +115,7 @@
                               <Component id="txtCodigo" alignment="0" max="32767" attributes="0"/>
                               <Component id="txtProducto" alignment="0" pref="159" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="txtStock" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
+                          <Component id="txtCatidad" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
                           <Component id="txtPrecio" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
                           <Component id="cbUnidadoKg" alignment="0" min="-2" pref="91" max="-2" attributes="0"/>
                       </Group>
@@ -145,7 +145,7 @@
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtStock" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtCatidad" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="cbUnidadoKg" min="-2" max="-2" attributes="0"/>
@@ -190,10 +190,10 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel6">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Stock:"/>
+                <Property name="text" type="java.lang.String" value="Cantidad:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtStock">
+            <Component class="javax.swing.JTextField" name="txtCatidad">
             </Component>
             <Component class="javax.swing.JButton" name="btnEditar">
               <Properties>
